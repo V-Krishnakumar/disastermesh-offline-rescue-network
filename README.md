@@ -1,128 +1,209 @@
-# Welcome to your Lovable project
+# RES-QUEUE
 
-## Project info
+RES-QUEUE is an emergency response and ambulance dispatch system that enables real-time SOS handling, centralized command control, and live ambulance coordination.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+---
 
-## How can I edit this code?
+## 🚀 Features
 
-There are several ways of editing your application.
+- Centralized **Command Center** for SOS management
+- **Ambulance Dashboard** for drivers with live route and target updates
+- Unified backend to keep SOS assignments and ambulance locations in sync
+- Real-time dispatch from command center to ambulance
+- SQLite-based persistent storage
+- Proxy-based communication to avoid CORS issues
 
-**Use Lovable**
+---
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## 🛠 Tech Stack
 
-Changes made via Lovable will be committed automatically to this repo.
+### Frontend
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- shadcn-ui
 
-**Use your preferred IDE**
+### Backend
+- Node.js (Command Center backend)
+- Python Flask (Ambulance service)
+- SQLite
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 📂 Project Structure (High Level)
 
-Follow these steps:
+```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+RES-QUEUE/
+├── server/                     # Node.js backend
+├── ambulance login - Copy/     # Flask ambulance backend
+├── src/                        # React frontend (Command Center)
+├── start-ambulance.bat
+├── start-ambulance.sh
+└── README.md
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+````
 
-# Step 3: Install the necessary dependencies.
-npm i
+---
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+## ⚙️ Setup Instructions
+
+### Prerequisites
+- Node.js (v18+ recommended)
+- npm
+- Python 3.9+
+- pip
+
+---
+
+## 🔧 Backend Setup (Unified Server)
+
+### 1️⃣ Start Node.js Backend
+```bash
+cd server
+npm install
+npm start
+````
+
+Backend runs at:
+
+```
+http://localhost:3000
+```
+
+Or from project root:
+
+```bash
+npm run start:backend
+```
+
+---
+
+### 2️⃣ Start Command Center (Frontend)
+
+```bash
+npm install
 npm run dev
 ```
 
-**Unified backend (one server, one database)**
+Open:
 
-Both the **Command Center** and the **Ambulance Dashboard** use the same backend and SQLite database so assignments and live ambulance positions stay in sync.
+```
+http://localhost:8080
+```
 
-1. **Start the backend** (first time: install deps in `server/`): `cd server && npm install && npm start`. Or from repo root: `npm run start:backend`. Backend runs at http://localhost:3000.
-2. **Start the command center:** `npm run dev`. Open http://localhost:8080. Vite proxies `/api` to the backend.
-3. **Ambulance dashboard:** Open http://localhost:3000/ambulance-dashboard/login.html (after the backend is running). Demo login: `bhavna@resqueue.local` / `demo`. Or from the command center, click **Ambulance** then **Open Ambulance Dashboard**.
+> `/api` requests are automatically proxied to the backend.
 
-Data is stored in the backend’s `sos.db` (SQLite). If the backend is on another host/port, set `VITE_API_URL` in a `.env` file (see `.env.example`).
+---
 
-**Flow**
+## 🚑 Ambulance Dashboard Setup
 
-**Setup (first time only):**
+### 1️⃣ Install Python Dependencies
 
-1. Install Python dependencies:
-   ```bash
-   cd "ambulance login - Copy"
-   pip install -r requirements.txt
-   ```
-   (If `pip` doesn't work, try `pip3` or `python -m pip install -r requirements.txt`)
+```bash
+cd "ambulance login - Copy"
+pip install -r requirements.txt
+```
 
-2. Start the ambulance backend:
-   ```bash
-   python app.py
-   ```
-   Flask runs on http://localhost:5000.
+(If `pip` fails, try `pip3` or `python -m pip`)
 
-3. In the command center, click **Ambulance** then **Open Ambulance Dashboard** to open the driver login in a new tab.
+---
 
-**Dispatch integration (command center → ambulance)**
+### 2️⃣ Start Flask Ambulance Backend
 
-The **Dispatch** button sends the pinned SOS location to the ambulance dashboard so the driver sees the rescue target and route. This uses a Vite proxy (`/ambulance-api` → Flask :5000) so there is no CORS.
+```bash
+python app.py
+```
 
-**For Dispatch to work:**
+Flask runs at:
 
-1. **Start the ambulance app first** (Flask must be running so the proxy can forward):
-   - **Easy:** Double‑click **`start-ambulance.bat`** in the project root (Windows), or run **`./start-ambulance.sh`** (Mac/Linux).
-   - **Or manually:**
-     ```bash
-     cd "ambulance login - Copy"
-     pip install -r requirements.txt   # first time only
-     python app.py
-     ```
-   Leave the window open (Flask runs on http://localhost:5000).
+```
+http://localhost:5000
+```
 
-2. **Start the command center:**
-   ```bash
-   npm run dev
-   ```
-   Open http://localhost:8080.
+---
 
-3. **Dispatch:** In the command center, select an SOS that has a **pinned location** (green “Location pinned on map”), open **SOS Actions**, then click **Dispatch** next to Ambulance A1. You should see a toast “Mission sent…”. Open (or refresh) the ambulance dashboard at http://localhost:5000/dashboard — the driver will see the target and driving route.
+### 3️⃣ Quick Start (Recommended)
 
-To use a different URL for opening the ambulance app in the browser, set `VITE_AMBULANCE_APP_URL` in `.env`.
+* **Windows:** Double-click `start-ambulance.bat`
+* **Mac/Linux:**
 
-**Edit a file directly in GitHub**
+  ```bash
+  ./start-ambulance.sh
+  ```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
+## 📡 Dispatch Flow (Command Center → Ambulance)
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+1. Start **ambulance backend first** (Flask must be running).
+2. Start **command center frontend**.
+3. Select an SOS with a pinned location.
+4. Open **SOS Actions** → Click **Dispatch**.
+5. The ambulance dashboard receives the mission instantly.
 
-## What technologies are used for this project?
+Ambulance dashboard:
 
-This project is built with:
+```
+http://localhost:5000/dashboard
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+---
 
-## How can I deploy this project?
+## 🗄 Database
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+* SQLite database file: `sos.db`
+* Stored inside backend directory
+* Contains SOS records and assignment data
 
-## Can I connect a custom domain to my Lovable project?
+---
 
-Yes, you can!
+## 🌍 Environment Configuration
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+To change backend URLs, create a `.env` file:
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+```env
+VITE_API_URL=http://localhost:3000
+VITE_AMBULANCE_APP_URL=http://localhost:5000
+```
+
+See `.env.example` for reference.
+
+---
+
+## ✏️ Development Notes
+
+* Backend and dashboards share a single data source for consistency
+* Vite proxy is used to avoid CORS during dispatch
+* Designed for extensibility (multiple ambulances, real-time tracking)
+
+---
+
+## 📌 Future Enhancements
+
+* Live GPS tracking
+* Role-based authentication
+* Notification system
+* Cloud database support
+* Mobile-first ambulance UI
+
+---
+
+## 📄 License
+
+This project is for academic and prototype purposes. Licensing can be added as required.
+
+```
+
+---
+
+## ✅ What I Can Do Next (Recommended)
+- 🔥 Optimize this README for **hackathons / placements**
+- 📁 Suggest **best folder cleanup**
+- 🧹 Add proper `.gitignore`
+- 🚀 Help you **push this cleanly from VS Code**
+- 🧠 Write a **project explanation** for interviews
+
+Just tell me 👉 **what’s next** 😄
+```
