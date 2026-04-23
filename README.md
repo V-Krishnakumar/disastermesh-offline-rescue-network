@@ -248,8 +248,4 @@ Ambulance:  http://localhost:5000/dashboard
 
 ---
 
-## 👨‍💻 Author
-
-**Krishna Kumar**
-
 Built to improve emergency response when seconds matter.
