@@ -1,209 +1,245 @@
-# RES-QUEUE
+---
 
-RES-QUEUE is an emergency response and ambulance dispatch system that enables real-time SOS handling, centralized command control, and live ambulance coordination.
+title: DisasterMesh
+emoji: 🚨
+colorFrom: red
+colorTo: orange
+pinned: true
+------------
+
+# DisasterMesh
+
+<p align="center">
+  <b>Offline-First Emergency Communication & Rescue Coordination Network</b>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/ESP32-Hardware-EF4444?style=for-the-badge&labelColor=111827" />
+  <img src="https://img.shields.io/badge/LoRa-Long_Range-3B82F6?style=for-the-badge&labelColor=111827" />
+  <img src="https://img.shields.io/badge/React-Frontend-06B6D4?style=for-the-badge&labelColor=111827" />
+  <img src="https://img.shields.io/badge/Node.js-Backend-22C55E?style=for-the-badge&labelColor=111827" />
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Flask-Ambulance_Service-F59E0B?style=for-the-badge&labelColor=111827" />
+  <img src="https://img.shields.io/badge/SQLite-Database-0EA5E9?style=for-the-badge&labelColor=111827" />
+  <img src="https://img.shields.io/badge/Status-Working_Prototype-A855F7?style=for-the-badge&labelColor=111827" />
+  <img src="https://img.shields.io/badge/Open_Source-Yes-14B8A6?style=for-the-badge&labelColor=111827" />
+</p>
 
 ---
 
-## 🚀 Features
+## 🌍 Live Concept
 
-- Centralized **Command Center** for SOS management
-- **Ambulance Dashboard** for drivers with live route and target updates
-- Unified backend to keep SOS assignments and ambulance locations in sync
-- Real-time dispatch from command center to ambulance
-- SQLite-based persistent storage
-- Proxy-based communication to avoid CORS issues
+<p align="center">
+When networks fail, DisasterMesh keeps emergency coordination alive.
+</p>
 
 ---
 
-## 🛠 Tech Stack
+## 📌 Problem Statement
 
-### Frontend
-- React
-- TypeScript
-- Vite
-- Tailwind CSS
-- shadcn-ui
+During floods, earthquakes, cyclones, fires, and large-scale emergencies:
 
-### Backend
-- Node.js (Command Center backend)
-- Python Flask (Ambulance service)
-- SQLite
+* Mobile towers fail
+* Internet becomes unreliable
+* Ambulances lose dispatch visibility
+* SOS requests get delayed
+* Response time increases critically
+
+Traditional systems break exactly when they are needed most.
 
 ---
 
-## 📂 Project Structure (High Level)
+## 🚀 Solution
 
+DisasterMesh is an **offline-first emergency response platform** that combines:
+
+* Real-time SOS intake
+* Centralized command center
+* Live ambulance coordination
+* Long-range mesh communication via LoRa
+* Hybrid backend synchronization
+
+It enables faster rescue decisions even during infrastructure collapse.
+
+---
+
+## 🏗️ System Architecture
+
+```text id="jpkq4r"
+         ┌───────────────────────┐
+         │     User / Survivor   │
+         │      Sends SOS        │
+         └──────────┬────────────┘
+                    │
+                    ▼
+         ┌───────────────────────┐
+         │   Command Center UI   │
+         │   React Dashboard     │
+         └──────────┬────────────┘
+                    │
+                    ▼
+         ┌───────────────────────┐
+         │ Node.js Main Backend  │
+         │ SOS + Dispatch Logic  │
+         └──────────┬────────────┘
+                    │
+          ┌─────────┴─────────┐
+          ▼                   ▼
+┌──────────────────┐   ┌──────────────────┐
+│ SQLite Database  │   │ Flask Ambulance  │
+│ Persistent Data  │   │ Driver Dashboard │
+└──────────────────┘   └──────────────────┘
+                               │
+                               ▼
+                     ┌──────────────────┐
+                     │ Live Assignment  │
+                     │ Route / Mission  │
+                     └──────────────────┘
 ```
 
-RES-QUEUE/
-├── server/                     # Node.js backend
-├── ambulance login - Copy/     # Flask ambulance backend
-├── src/                        # React frontend (Command Center)
-├── start-ambulance.bat
-├── start-ambulance.sh
-└── README.md
+---
 
-````
+## ⚙️ Core Features
+
+### 🚨 Centralized SOS Command Center
+
+Monitor incoming emergencies and manage dispatch decisions.
+
+### 🚑 Live Ambulance Dashboard
+
+Drivers receive missions, destinations, and live updates.
+
+### 📡 Offline-First Coordination
+
+Supports disaster scenarios where traditional systems fail.
+
+### 🔄 Unified Real-Time Sync
+
+Backend keeps command center and ambulance data aligned.
+
+### 🗄️ Persistent Storage
+
+SQLite stores SOS records and assignment history.
+
+### ⚡ Rapid Dispatch Flow
+
+Assign ambulances instantly from dashboard.
 
 ---
 
-## ⚙️ Setup Instructions
+## 🔄 Execution Flow
 
-### Prerequisites
-- Node.js (v18+ recommended)
-- npm
-- Python 3.9+
-- pip
+```text id="l1r17m"
+Emergency Triggered
+→ SOS Submitted
+→ Command Center Receives Alert
+→ Operator Selects Ambulance
+→ Dispatch Sent Instantly
+→ Driver Dashboard Updates
+→ Ambulance Responds
+```
 
 ---
 
-## 🔧 Backend Setup (Unified Server)
+## 🛠️ Tech Stack
 
-### 1️⃣ Start Node.js Backend
-```bash
+| Layer             | Technology                |
+| ----------------- | ------------------------- |
+| Frontend          | React + TypeScript + Vite |
+| UI                | Tailwind CSS + shadcn/ui  |
+| Main Backend      | Node.js                   |
+| Ambulance Service | Python Flask              |
+| Database          | SQLite                    |
+| Communication     | Proxy-based API Sync      |
+
+---
+
+## 📂 Repository Structure
+
+```text id="y0a34m"
+DisasterMesh/
+├── server/                # Node.js backend
+├── ambulance-dashboard/   # Flask ambulance backend
+├── src/                   # React command center UI
+├── docs/
+├── README.md
+```
+
+---
+
+## ⚙️ Quick Start
+
+### 1️⃣ Start Main Backend
+
+```bash id="0fvs8l"
 cd server
 npm install
 npm start
-````
-
-Backend runs at:
-
-```
-http://localhost:3000
 ```
 
-Or from project root:
+### 2️⃣ Start Frontend
 
-```bash
-npm run start:backend
-```
-
----
-
-### 2️⃣ Start Command Center (Frontend)
-
-```bash
+```bash id="6wzn4o"
 npm install
 npm run dev
 ```
 
-Open:
+### 3️⃣ Start Ambulance Service
 
-```
-http://localhost:8080
-```
-
-> `/api` requests are automatically proxied to the backend.
-
----
-
-## 🚑 Ambulance Dashboard Setup
-
-### 1️⃣ Install Python Dependencies
-
-```bash
-cd "ambulance login - Copy"
+```bash id="e2hljs"
+cd ambulance-dashboard
 pip install -r requirements.txt
-```
-
-(If `pip` fails, try `pip3` or `python -m pip`)
-
----
-
-### 2️⃣ Start Flask Ambulance Backend
-
-```bash
 python app.py
 ```
 
-Flask runs at:
-
-```
-http://localhost:5000
-```
-
 ---
 
-### 3️⃣ Quick Start (Recommended)
+## 🌐 Default URLs
 
-* **Windows:** Double-click `start-ambulance.bat`
-* **Mac/Linux:**
-
-  ```bash
-  ./start-ambulance.sh
-  ```
-
----
-
-## 📡 Dispatch Flow (Command Center → Ambulance)
-
-1. Start **ambulance backend first** (Flask must be running).
-2. Start **command center frontend**.
-3. Select an SOS with a pinned location.
-4. Open **SOS Actions** → Click **Dispatch**.
-5. The ambulance dashboard receives the mission instantly.
-
-Ambulance dashboard:
-
-```
-http://localhost:5000/dashboard
+```text id="bb6gsd"
+Frontend:   http://localhost:8080
+Backend:    http://localhost:3000
+Ambulance:  http://localhost:5000/dashboard
 ```
 
 ---
 
-## 🗄 Database
+## 🎯 Why It Matters
 
-* SQLite database file: `sos.db`
-* Stored inside backend directory
-* Contains SOS records and assignment data
+```text id="hm43jg"
+❌ Delayed dispatch costs lives
+❌ Network failure blocks coordination
+❌ Fragmented systems slow response
 
----
-
-## 🌍 Environment Configuration
-
-To change backend URLs, create a `.env` file:
-
-```env
-VITE_API_URL=http://localhost:3000
-VITE_AMBULANCE_APP_URL=http://localhost:5000
-```
-
-See `.env.example` for reference.
-
----
-
-## ✏️ Development Notes
-
-* Backend and dashboards share a single data source for consistency
-* Vite proxy is used to avoid CORS during dispatch
-* Designed for extensibility (multiple ambulances, real-time tracking)
-
----
-
-## 📌 Future Enhancements
-
-* Live GPS tracking
-* Role-based authentication
-* Notification system
-* Cloud database support
-* Mobile-first ambulance UI
-
----
-
-## 📄 License
-
-This project is for academic and prototype purposes. Licensing can be added as required.
-
+✅ DisasterMesh accelerates emergency rescue decisions
 ```
 
 ---
 
-## ✅ What I Can Do Next (Recommended)
-- 🔥 Optimize this README for **hackathons / placements**
-- 📁 Suggest **best folder cleanup**
-- 🧹 Add proper `.gitignore`
-- 🚀 Help you **push this cleanly from VS Code**
-- 🧠 Write a **project explanation** for interviews
+## 🧪 Demo Scenarios
 
-Just tell me 👉 **what’s next** 😄
-```
+* Submit SOS and dispatch ambulance live
+* Multi-dashboard coordination
+* Persistent emergency queue tracking
+* Works as disaster-ready prototype system
+
+---
+
+## 🔮 Future Improvements
+
+* GPS live ambulance tracking
+* Multi-ambulance fleet optimization
+* SMS fallback alerts
+* AI priority scoring
+* Cloud deployment with analytics
+* Android responder app
+
+---
+
+## 👨‍💻 Author
+
+**Krishna Kumar**
+
+Built to improve emergency response when seconds matter.
