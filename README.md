@@ -17,26 +17,6 @@
   <img src="https://img.shields.io/badge/Status-Working_Prototype-A855F7?style=for-the-badge&labelColor=111827" />
 </p>
 
-# DisasterMesh
-
-<p align="center">
-  <b>Offline-First Emergency Communication & Rescue Coordination Network</b>
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/ESP32-Hardware-EF4444?style=for-the-badge&labelColor=111827" />
-  <img src="https://img.shields.io/badge/LoRa-Long_Range-3B82F6?style=for-the-badge&labelColor=111827" />
-  <img src="https://img.shields.io/badge/React-Frontend-06B6D4?style=for-the-badge&labelColor=111827" />
-  <img src="https://img.shields.io/badge/Node.js-Backend-22C55E?style=for-the-badge&labelColor=111827" />
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Flask-Ambulance_Service-F59E0B?style=for-the-badge&labelColor=111827" />
-  <img src="https://img.shields.io/badge/SQLite-Database-0EA5E9?style=for-the-badge&labelColor=111827" />
-  <img src="https://img.shields.io/badge/Status-Working_Prototype-A855F7?style=for-the-badge&labelColor=111827" />
-  <img src="https://img.shields.io/badge/Open_Source-Yes-14B8A6?style=for-the-badge&labelColor=111827" />
-</p>
-
 ---
 
 ## 🌍 Live Concept
